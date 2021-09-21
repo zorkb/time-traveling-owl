@@ -12,7 +12,7 @@
 
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script> -->
   <!-- Custom Scripts -->
-  
+  <script src="./scripts/app.js" defer></script>
   <!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
 <body>
 
 <!-- intro-screen -->
-<!-- <div class="intro-screen">
+<div class="intro-screen">
   <div class="start-box">
    
       <h1 class="title-text">the time-traveling owl</h1>
@@ -42,31 +42,32 @@
       </p>
   
   </div>
-  <button class="start">start!</button>
-</div> -->
+  <button id="start">start!</button>
+</div>
 
 <!-- game screen  -->
 <div class="game-screen">
   <div class="game-box">
 
     <ul class="time-place">
-      <li >location: </li>
-      <li>time: </li>
-      <li>day: </li>
-      <li>year: </li>
+      <li class="loc">location: </li>
+      <li class="year">year: </li>
+      <li class="day">day: </li>
+      <li class="time">time: </li>
     </ul>
 
     <ul class="owl-stats">
-      <li>owl name: </li>
-      <li>hunger: </li>
-      <li>boredom: </li>
-      <li>fatigue: </li>
+      <li class="name">owl name: </li>
+      <li class="hunger">hunger: </li>
+      <li class="boredom">boredom: </li>
+      <li class="fatigue">fatigue: </li>
     </ul>
 
     <button class="action">feed</button>
     <button class="action">give book</button>
     <button class="action">sleep</button>
     <button class="time-travel">time travel</button>
+    <button class="warm-egg">warm egg</button>
   </div>
 
   <div class="page-stuff">
@@ -84,8 +85,6 @@
         </p>
 
       </div>
-
-  <button class="action">warm egg</button>
 
 </div>
 
