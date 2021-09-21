@@ -24,9 +24,17 @@ let $egg = $('.egg');
 let $hatch = $('.hatch');
 let $owl = $('.owl');
 let $pageText = $('.page-text');
+//li definitions
+let $locLi = $('.loc');
+let $yearLi = $('.year');
+let $dayLi = $('.day');
+let $timeLi = $('.time');
+let $nameLi = $('.name');
+let $hungerLi = $('.hunger');
+let $boredomLi = $('.boredom');
+let $fatigueLi = $('.fatigue');
 
-
-//event listeners
+//functions
 function hideGame() {
     $gameScreen.hide();
 }
@@ -38,6 +46,11 @@ function hideEvolution() {
     $owl.hide();
 }
 
+function hideSave() {
+    $('.owl-name-input, .save').hide();
+}
+
+//eventListeners
 $startButton.on('click', function() {
     console.log('game started');
     $introScreen.remove();
@@ -47,19 +60,52 @@ $startButton.on('click', function() {
 $warmEgg.on('click', function() {
     console.log('egg warming!');
     $egg.hide();
-    // $hatch.show('slow');
+    // $hatch.show('slow'); <= struggling to get 2 part transition
     // $hatch.delay(1000);
     // $hatch.hide('slow');
     $owl.show('slow');
     $warmEgg.hide();
     $topStuff.show();
-    $pageText.html(`whoa - it's a mysterious time-traveling owl! what will you name it?
-    <br /><br />
-    <input type='text' class='owl-name-input' /> <button class='action'>save</button>`)
+
+    //stat appends
+    $hungerLi.append(`${owlStats.hunger}`);
+    $boredomLi.append(`${owlStats.boredom}`);
+    $fatigueLi.append(`${owlStats.fatigue}`);
+
+    //place and time appends
+    $locLi.append(`${`Secret Lab`}`);
+    $yearLi.append(`${`2021`}`);
+    // $dayLi.append(`${}`);
+    // $timeLi.append(`${}`);
+
+    $pageText.html(`whoa - it's a mysterious time-traveling owl! what will you name it?`)
+    $('.owl-name-input, .save').show();
 })
+
+$('.save').on('click', function() {
+    console.log('saved');
+    owlStats.owlName = $('.owl-name-input').val();
+    console.log(owlStats.owlName);
+
+    //show owl name
+    $nameLi.append(`${owlStats.owlName}`);
+    
+
+    //hide name input
+    $('.owl-name-input, .save').hide();
+
+    //message to user
+    $pageText.html(`${owlStats.owlName}... that’s great!
+    <br /><br />
+    click the "feed" and "entertain" buttons to make sure he doesn't get too hungry or bored. and put it to bed at a reasonable hour, please!
+    <br /><br />
+    you may also travel through time with your new pet...`);
+});
+
 
 //calls
 hideGame();
 hideTopStuff();
 hideEvolution();
+hideSave();
 
