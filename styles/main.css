@@ -52,4 +52,66 @@ body {
     border-color: whitesmoke;
 }
 
+/* game screen */
+.game-box {
+    background-color: rgba(0,0,0,.7);
+    height: 120px; 
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.time-place {
+    margin-left: 40px;
+    font-size: 14px;
+    list-style: none;
+}
+
+.owl-stats {
+    margin-left: 40px;
+    font-size: 14px;
+    list-style: none;
+}
+
+.action {
+    padding: 5px 30px;
+    font-size: 14px;
+    background-color: rgba(0,0,0,.7);
+    color: whitesmoke;
+    border-color: whitesmoke;
+}
+
+.time-travel {
+    padding: 5px 30px;
+    font-size: 14px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-color: whitesmoke;
+}
+
+.page-stuff {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    min-height: 70vh;
+}
+
+.owl {
+    width: 375px;
+}
+
+.egg {
+    width: 220px;
+}
+
+.hatch {
+    width: 220px;
+}
+
+.page-text {
+    background-color: rgba(0,0,0,.85);
+    padding: 50px;
+    max-width: 450px;
+    font-size: 18px;
+}
 
