@@ -19,13 +19,23 @@ let $startButton = $('#start');
 let $introScreen = $('.intro-screen');
 let $gameScreen = $('.game-screen');
 let $topStuff = $('.action, .time-travel, .time-place, .owl-stats');
-let $warmEgg= $('.warm-egg');
-
+let $warmEgg = $('.warm-egg');
+let $egg = $('.egg');
+let $hatch = $('.hatch');
+let $owl = $('.owl');
+let $pageText = $('.page-text');
 
 
 //event listeners
 function hideGame() {
     $gameScreen.hide();
+}
+function hideTopStuff() {
+    $topStuff.hide();
+}
+function hideEvolution() {
+    $hatch.hide();
+    $owl.hide();
 }
 
 $startButton.on('click', function() {
@@ -34,14 +44,22 @@ $startButton.on('click', function() {
     $gameScreen.show();
 });
 
-function hideTopStuff() {
-    $topStuff.hide();
-}
-
 $warmEgg.on('click', function() {
     console.log('egg warming!');
+    $egg.hide();
+    // $hatch.show('slow');
+    // $hatch.delay(1000);
+    // $hatch.hide('slow');
+    $owl.show('slow');
+    $warmEgg.hide();
+    $topStuff.show();
+    $pageText.html(`whoa - it's a mysterious time-traveling owl! what will you name it?
+    <br /><br />
+    <input type='text' class='owl-name-input' /> <button class='action'>save</button>`)
 })
+
 //calls
 hideGame();
 hideTopStuff();
+hideEvolution();
 

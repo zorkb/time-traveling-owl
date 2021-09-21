@@ -81,6 +81,10 @@ body {
     border-color: whitesmoke;
 }
 
+.owl-name-input {
+    height: 27px;
+    font-size: 14px;
+}
 .warm-egg {
     padding: 5px 30px;
     font-size: 14px;
