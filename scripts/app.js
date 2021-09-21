@@ -3,6 +3,16 @@ const timePlace = {
     location: null,
     year: null,
     dayCount: 0,
+    increaseDayCount: null,
+
+    increment: () => {
+        timePlace.dayCount++;
+        console.log(timePlace.dayCount);
+        if(timePlace.dayCount === 50) {
+            clearInterval(timePlace.increaseDayCount);
+        }
+        $dayLi.html(`day count: ${timePlace.dayCount}`);
+    }
 }
 
 //owl object
@@ -11,6 +21,15 @@ const owlStats = {
     hunger: 4,
     boredom: 5,
     fatigue: 3,
+
+    increment: () => {
+        timePlace.dayCount++;
+        console.log(timePlace.dayCount);
+        if(timePlace.dayCount === 50) {
+            clearInterval(timePlace.increaseDayCount);
+        }
+        $dayLi.html(`day count: ${timePlace.dayCount}`);
+    }
 }
 
 // const timer = setInterval(countHours, 1000);
@@ -24,6 +43,7 @@ let $warmEgg = $('.warm-egg');
 let $egg = $('.egg');
 let $hatch = $('.hatch');
 let $owl = $('.owl');
+let $sleepOwl = $('.sleep-owl');
 let $pageText = $('.page-text');
 //li definitions
 let $locLi = $('.loc');
@@ -48,28 +68,21 @@ function hideTopStuff() {
 function hideEvolution() {
     $hatch.hide();
     $owl.hide();
+    $sleepOwl.hide();
 }
 
 function hideSave() {
     $('.owl-name-input, .save').hide();
 }
 
-// function countDays() {
-//     timePlace.dayCount++;
-//     timePlace.dayCount.delay(1000);
-// }
-// function countHours() {
-//     timePlace.dayCount++;
-//     const day = Math.floor(timePlace.dayCount / 3600);
-//     const hour = Math.floor((timePlace.dayCount - day * 3600) / 60);
-//     const minute = timePlace.dayCount - (day * 3600 + hour * 60);
-//     if(day < 10)
-//         day = "0"+ day;
-//     if(hour < 10)
-//         hour = "0"+ hour;
-//     if(minute < 10)
-//         minute = "0"+ minute;
-// }
+function handleDayCount() {
+    timePlace.increaseDayCount = setInterval(timePlace.increment, 1000 * 20);
+}
+
+function handleHungerCount() {
+
+}
+
 
 //eventListeners
 $startButton.on('click', function() {
@@ -123,6 +136,7 @@ $('.save').on('click', function() {
     you may also travel through time with your new pet...`);
 });
 
+//button actions
 $feed.on('click', function() {
     if(owlStats.hunger < 10 && owlStats.hunger > 0) {
         owlStats.hunger--;
@@ -131,10 +145,36 @@ $feed.on('click', function() {
     }
 });
 
+$book.on('click', function() {
+    if(owlStats.boredom < 10 && owlStats.boredom > 0) {
+        owlStats.boredom--;
+        $boredomLi.html(`boredom: ${owlStats.boredom}`);
+        console.log('boredom -1');
+    }
+});
+
+$sleepWake.on('click', function() {
+    if(owlStats.fatigue < 10 && owlStats.fatigue > 0) {
+        owlStats.fatigue--;
+        $fatigueLi.html(`fatigue: ${owlStats.fatigue}`);
+        console.log('fatigue -1');
+
+        $owl.toggle();
+        $sleepOwl.toggle();
+    } else if(owlStats.fatigue === 0) {
+        $owl.toggle();
+        $sleepOwl.toggle();
+    }
+});
+
+//lose game
+
+
 //calls
 hideGame();
 hideTopStuff();
 hideEvolution();
 hideSave();
+handleDayCount();
 
 

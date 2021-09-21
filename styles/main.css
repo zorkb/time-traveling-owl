@@ -117,15 +117,11 @@ body {
     min-height: 70vh;
 }
 
-.owl {
+.owl, .sleep-owl {
     width: 375px;
 }
 
-.egg {
-    width: 220px;
-}
-
-.hatch {
+.egg, .hatch {
     width: 220px;
 }
 
