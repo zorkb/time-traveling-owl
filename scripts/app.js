@@ -2,17 +2,18 @@
 const timePlace = {
     location: null,
     year: null,
-    day: null,
-    time: null,
+    dayCount: 0,
 }
 
 //owl object
 const owlStats = {
     owlName: null,
-    hunger: 0,
-    boredom: 0,
-    fatigue: 0,
+    hunger: 4,
+    boredom: 5,
+    fatigue: 3,
 }
+
+// const timer = setInterval(countHours, 1000);
 
 //DOM
 let $startButton = $('#start');
@@ -27,12 +28,15 @@ let $pageText = $('.page-text');
 //li definitions
 let $locLi = $('.loc');
 let $yearLi = $('.year');
-let $dayLi = $('.day');
-let $timeLi = $('.time');
+let $dayLi = $('.day-count');
 let $nameLi = $('.name');
 let $hungerLi = $('.hunger');
 let $boredomLi = $('.boredom');
 let $fatigueLi = $('.fatigue');
+//buttons
+let $feed = $('#feed');
+let $book = $('#book');
+let $sleepWake = $('#sleep-wake');
 
 //functions
 function hideGame() {
@@ -50,6 +54,23 @@ function hideSave() {
     $('.owl-name-input, .save').hide();
 }
 
+// function countDays() {
+//     timePlace.dayCount++;
+//     timePlace.dayCount.delay(1000);
+// }
+// function countHours() {
+//     timePlace.dayCount++;
+//     const day = Math.floor(timePlace.dayCount / 3600);
+//     const hour = Math.floor((timePlace.dayCount - day * 3600) / 60);
+//     const minute = timePlace.dayCount - (day * 3600 + hour * 60);
+//     if(day < 10)
+//         day = "0"+ day;
+//     if(hour < 10)
+//         hour = "0"+ hour;
+//     if(minute < 10)
+//         minute = "0"+ minute;
+// }
+
 //eventListeners
 $startButton.on('click', function() {
     console.log('game started');
@@ -66,6 +87,7 @@ $warmEgg.on('click', function() {
     $owl.show('slow');
     $warmEgg.hide();
     $topStuff.show();
+    // countDays();
 
     //stat appends
     $hungerLi.append(`${owlStats.hunger}`);
@@ -75,8 +97,7 @@ $warmEgg.on('click', function() {
     //place and time appends
     $locLi.append(`${`Secret Lab`}`);
     $yearLi.append(`${`2021`}`);
-    // $dayLi.append(`${}`);
-    // $timeLi.append(`${}`);
+    $dayLi.append(`${timePlace.dayCount}`);
 
     $pageText.html(`whoa - it's a mysterious time-traveling owl! what will you name it?`)
     $('.owl-name-input, .save').show();
@@ -95,17 +116,25 @@ $('.save').on('click', function() {
     $('.owl-name-input, .save').hide();
 
     //message to user
-    $pageText.html(`${owlStats.owlName}... that’s great!
+    $pageText.html(`${owlStats.owlName}... that’s a great name!
     <br /><br />
-    click the "feed" and "entertain" buttons to make sure he doesn't get too hungry or bored. and put it to bed at a reasonable hour, please!
+    click the "feed" and "entertain" buttons to make sure it doesn't get too hungry or bored. and put it to bed at a reasonable hour, please!
     <br /><br />
     you may also travel through time with your new pet...`);
 });
 
+$feed.on('click', function() {
+    if(owlStats.hunger < 10 && owlStats.hunger > 0) {
+        owlStats.hunger--;
+        $hungerLi.html(`hunger: ${owlStats.hunger}`);
+        console.log('hunger -1');
+    }
+});
 
 //calls
 hideGame();
 hideTopStuff();
 hideEvolution();
 hideSave();
+
 
