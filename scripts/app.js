@@ -8,8 +8,22 @@ const timePlace = {
     increment: () => {
         timePlace.dayCount++;
         // console.log(timePlace.dayCount);
-        if(timePlace.dayCount === 50) {
+        if(timePlace.dayCount === 25) {
+            //stop all counts at end of game
             clearInterval(timePlace.increaseDayCount);
+            clearInterval(owlStats.increaseHunger);
+            clearInterval(owlStats.increaseBoredom);
+            clearInterval(owlStats.increaseFatigue);
+            //win scenario
+            $pageText.show();
+            $pageText.html(`way to go! you kept ${owlStats.owlName} for the maximium amount of time before ascending to a new plane of existence! try again to see if you can shepherd another owl through our current life sphere!`
+            );
+
+            $gameBox.hide();
+            $owl.hide();
+            $sleepOwl.hide();
+            $flower.show();
+            $playAgain.show();
         }
         $dayLi.html(`day count: ${timePlace.dayCount}`);
     }
@@ -34,6 +48,7 @@ const owlStats = {
             clearInterval(owlStats.increaseHunger);
             clearInterval(owlStats.increaseBoredom);
             clearInterval(owlStats.increaseFatigue);
+            //lose messages
             $pageText.show();
             $pageText.html(`oh no! ${owlStats.owlName} got too hungry and escaped! better luck next time with a different owl.
             
@@ -137,8 +152,8 @@ let $sadOwl = $('.sad-owl');
 let $flower = $('.flower');
 let $pageText = $('.page-text');
 //li definitions
-let $locLi = $('.loc');
-let $yearLi = $('.year');
+// let $locLi = $('.loc'); category removed for now
+// let $yearLi = $('.year'); category removed for now
 let $dayLi = $('.day-count');
 let $nameLi = $('.name');
 let $hungerLi = $('.hunger');
@@ -168,19 +183,19 @@ function hideGame() {
 
 //functions to increment stats
 function handleDayCount() {
-    timePlace.increaseDayCount = setInterval(timePlace.increment, 1000 * 15);
+    timePlace.increaseDayCount = setInterval(timePlace.increment, 1000 * 10);
 }
 
 function handleHungerCount() {
-    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000);
+    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000 * 2);
 }
 
 function handleBoredomCount() {
-    owlStats.increaseBoredom = setInterval(owlStats.incrementBoredom, 1000 * 5);
+    owlStats.increaseBoredom = setInterval(owlStats.incrementBoredom, 1000 * 3);
 }
 
 function handleFatigueCount() {
-    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 10);
+    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 4);
 }
 
 //eventListeners
@@ -282,7 +297,8 @@ $wake.on('click', function() {
 $timeTravel.on('click', function() {
     $('body').css("background", `url(${locationImgs[Math.floor(Math.random() * 11)]}) center center fixed`);
     $('body').css('background-size', 'cover');
-    console.log('time travel hit');
+    owlStats.fatigue += 2;
+    // console.log('time travel hit');
 })
 
 //initiates all stat counters to go up at respective rates
