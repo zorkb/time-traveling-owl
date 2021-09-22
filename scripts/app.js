@@ -7,7 +7,7 @@ const timePlace = {
 
     increment: () => {
         timePlace.dayCount++;
-        console.log(timePlace.dayCount);
+        // console.log(timePlace.dayCount);
         if(timePlace.dayCount === 50) {
             clearInterval(timePlace.increaseDayCount);
         }
@@ -19,16 +19,20 @@ const timePlace = {
 const owlStats = {
     owlName: null,
     hunger: 4,
+    increaseHunger: null,
     boredom: 5,
+    increaseBoredom: null,
     fatigue: 3,
+    increaseFatigue: null,
 
-    increment: () => {
-        timePlace.dayCount++;
-        console.log(timePlace.dayCount);
-        if(timePlace.dayCount === 50) {
-            clearInterval(timePlace.increaseDayCount);
+    incrementHunger: () => {
+        owlStats.hunger++;
+        console.log(owlStats.hunger);
+        if(owlStats.hunger === 10) {
+            clearInterval(owlStats.increaseHunger);
+            alert(`your owl got too hungry and flew away. better luck next time!`);
         }
-        $dayLi.html(`day count: ${timePlace.dayCount}`);
+        $hungerLi.html(`hunger: ${owlStats.hunger}`);
     }
 }
 
@@ -71,6 +75,10 @@ function hideEvolution() {
     $sleepOwl.hide();
 }
 
+function hideStartGameBtn() {
+    $('.start-game').hide();
+}
+
 function hideSave() {
     $('.owl-name-input, .save').hide();
 }
@@ -80,9 +88,15 @@ function handleDayCount() {
 }
 
 function handleHungerCount() {
-
+    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000);
 }
 
+// function startCountingUp() {
+//     if(owlStats.owlName != null) {
+//         handleDayCount();
+//         handleHungerCount();
+//     }
+// }
 
 //eventListeners
 $startButton.on('click', function() {
@@ -123,6 +137,7 @@ $('.save').on('click', function() {
 
     //show owl name
     $nameLi.append(`${owlStats.owlName}`);
+    $('.start-game').show();
     
 
     //hide name input
@@ -167,6 +182,10 @@ $sleepWake.on('click', function() {
     }
 });
 
+$('.start-game').on('click', function(){
+    handleDayCount();
+    handleHungerCount();
+});
 //lose game
 
 
@@ -175,6 +194,8 @@ hideGame();
 hideTopStuff();
 hideEvolution();
 hideSave();
-handleDayCount();
+hideStartGameBtn();
+
+
 
 

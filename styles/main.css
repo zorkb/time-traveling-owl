@@ -89,6 +89,14 @@ body {
     border-color: whitesmoke;
 }
 
+.start-game {
+    padding: 5px 30px;
+    font-size: 14px;
+    background-color: rgba(0,0,0,.7);
+    color: whitesmoke;
+    border-color: whitesmoke;
+}
+
 .owl-name-input {
     height: 27px;
     font-size: 14px;
