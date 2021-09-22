@@ -29,18 +29,104 @@ const owlStats = {
         owlStats.hunger++;
         console.log(owlStats.hunger);
         if(owlStats.hunger === 10) {
+            clearInterval(timePlace.increaseDayCount);
             clearInterval(owlStats.increaseHunger);
-            alert(`your owl got too hungry and flew away. better luck next time!`);
+            clearInterval(owlStats.increaseBoredom);
+            clearInterval(owlStats.increaseFatigue);
+            // alert(`your owl got too hungry and flew away. better luck next time!`);
+            $pageText.show();
+            $pageText.html(`oh no! ${owlStats.owlName} got too hungry and escaped! better luck next time with a different owl.
+            
+            your streak was ${timePlace.dayCount} days.`);
+            // $hungerLi.hide();
+            // $boredomLi.hide();
+            // $fatigueLi.hide();
+            // $dayLi.hide();
+            // $yearLi.hide();
+            // $locLi.hide();
+            // $nameLi.hide();
+            $gameBox.hide();
+            $owl.hide();
+            $sleepOwl.hide();
+            $flower.show();
         }
         $hungerLi.html(`hunger: ${owlStats.hunger}`);
-    }
+    },
+
+    incrementBoredom: () => {
+        owlStats.boredom++;
+        console.log(owlStats.boredom);
+        if(owlStats.boredom === 10) {
+            clearInterval(timePlace.increaseDayCount);
+            clearInterval(owlStats.increaseHunger);
+            clearInterval(owlStats.increaseBoredom);
+            clearInterval(owlStats.increaseFatigue);
+            // alert(`your owl got too bored and flew away. better luck next time!`);
+            $pageText.show();
+            $pageText.html(`oh no! ${owlStats.owlName} got too bored and escaped! better luck next time with a different owl.
+            
+            your streak was ${timePlace.dayCount} days.`);
+
+            $gameBox.hide();
+            $owl.hide();
+            $sleepOwl.hide();
+            $flower.show();
+            }
+        $boredomLi.html(`boredom: ${owlStats.boredom}`);
+        // if(owlStats.boredom > 6) {
+        //     $owl.hide();
+        //     $sadOwl.show();
+        // } else if($sleepOwl.show() = true) {
+        //     $sadOwl.hide();
+        // }else{
+        //     $sadOwl.hide();
+        //     $owl.show();
+        // }
+    },
+
+    incrementFatigue: () => {
+        owlStats.fatigue++;
+        console.log(owlStats.fatigue);
+        if(owlStats.fatigue === 10) {
+            clearInterval(timePlace.increaseDayCount);
+            clearInterval(owlStats.increaseHunger);
+            clearInterval(owlStats.increaseBoredom);
+            clearInterval(owlStats.increaseFatigue);
+            // alert(`your owl got too tired and flew away. better luck next time!`);
+            $pageText.show();
+            $pageText.html(`oh no! ${owlStats.owlName} got too tired and escaped!
+
+            better luck next time with a different owl.
+            
+            your streak was ${timePlace.dayCount} days.`);
+            
+            $gameBox.hide();
+            $owl.hide();
+            $sleepOwl.hide();
+            $flower.show();
+        }
+        $fatigueLi.html(`fatigue ${owlStats.fatigue}`);
+        
+        // if(owlStats.fatigue > 6) {
+        //     $owl.hide();
+        //     $sadOwl.show();
+        // } 
+    },
 }
+
+//time-travel location image array
+locationImgs = [
+    'https://now.tufts.edu/sites/default/files/191105_berlin_wall_scharioth_lg.jpg', 
+    'https://i.pinimg.com/originals/96/ff/ef/96ffef70fcd2f69e0d32d1bcbd8f514b.png',
+    ''
+]
 
 // const timer = setInterval(countHours, 1000);
 
 //DOM
 let $startButton = $('#start');
 let $introScreen = $('.intro-screen');
+let $gameBox = $('.game-box');
 let $gameScreen = $('.game-screen');
 let $topStuff = $('.action, .time-travel, .time-place, .owl-stats');
 let $warmEgg = $('.warm-egg');
@@ -48,6 +134,8 @@ let $egg = $('.egg');
 let $hatch = $('.hatch');
 let $owl = $('.owl');
 let $sleepOwl = $('.sleep-owl');
+let $sadOwl = $('.sad-owl');
+let $flower = $('.flower');
 let $pageText = $('.page-text');
 //li definitions
 let $locLi = $('.loc');
@@ -60,43 +148,39 @@ let $fatigueLi = $('.fatigue');
 //buttons
 let $feed = $('#feed');
 let $book = $('#book');
-let $sleepWake = $('#sleep-wake');
+let $sleep = $('#sleep-wake');
+let $wake = $('#wake');
+let $timeTravel = $('.time-travel')
 
-//functions
+//function to hide elements
 function hideGame() {
     $gameScreen.hide();
-}
-function hideTopStuff() {
     $topStuff.hide();
-}
-function hideEvolution() {
     $hatch.hide();
     $owl.hide();
     $sleepOwl.hide();
-}
-
-function hideStartGameBtn() {
+    $sadOwl.hide();
+    $flower.hide();
     $('.start-game').hide();
-}
-
-function hideSave() {
     $('.owl-name-input, .save').hide();
 }
 
+//functions to increment stats
 function handleDayCount() {
-    timePlace.increaseDayCount = setInterval(timePlace.increment, 1000 * 20);
+    timePlace.increaseDayCount = setInterval(timePlace.increment, 1000 * 15);
 }
 
 function handleHungerCount() {
     owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000);
 }
 
-// function startCountingUp() {
-//     if(owlStats.owlName != null) {
-//         handleDayCount();
-//         handleHungerCount();
-//     }
-// }
+function handleBoredomCount() {
+    owlStats.increaseBoredom = setInterval(owlStats.incrementBoredom, 1000 * 5);
+}
+
+function handleFatigueCount() {
+    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 10);
+}
 
 //eventListeners
 $startButton.on('click', function() {
@@ -168,33 +252,94 @@ $book.on('click', function() {
     }
 });
 
-$sleepWake.on('click', function() {
+$sleep.on('click', function() {
     if(owlStats.fatigue < 10 && owlStats.fatigue > 0) {
         owlStats.fatigue--;
         $fatigueLi.html(`fatigue: ${owlStats.fatigue}`);
         console.log('fatigue -1');
 
-        $owl.toggle();
-        $sleepOwl.toggle();
-    } else if(owlStats.fatigue === 0) {
-        $owl.toggle();
-        $sleepOwl.toggle();
+        $owl.hide();
+        $sadOwl.hide();
+        $sleepOwl.show();
     }
 });
+
+$wake.on('click', function() {
+    $sleepOwl.hide();
+    $sadOwl.hide();    
+    $owl.show();    
+    }
+);
+
+$timeTravel.on('click', function() {
+    $('.body').css
+})
 
 $('.start-game').on('click', function(){
     handleDayCount();
     handleHungerCount();
+    handleBoredomCount();
+    handleFatigueCount();
+    $pageText.hide();
+    $('.start-game').hide();
 });
-//lose game
 
+
+//lose game
+function loseGameBored() {
+    if (owlStats.boredom === 10) {
+        $pageText.html(`oh no! ${owlStats.owlName} got too bored and escaped!
+
+        better luck next time with a different owl.
+        
+        your streak was ${timePlace.dayCount} days.`);
+        $hungerLi.hide();
+        $boredomLi.hide();
+        $fatigueLi.hide();
+        $dayLi.hide();
+        $yearLi.hide();
+        $locLi.hide();
+    }
+}
+
+function loseGameHungry() {
+    if (owlStats.hunger === 10) {
+        $pageText.html(`oh no! ${owlStats.owlName} got too hungry and escaped!
+
+        better luck next time with a different owl.
+        
+        your streak was ${timePlace.dayCount} days.`);
+        $hungerLi.hide();
+        $boredomLi.hide();
+        $fatigueLi.hide();
+        $dayLi.hide();
+        $yearLi.hide();
+        $locLi.hide();
+    }
+}
+
+function loseGameTired() {
+    if (owlStats.fatigue === 10) {
+        $pageText.html(`oh no! ${owlStats.owlName} got too tired and escaped!
+
+        better luck next time with a different owl.
+        
+        your streak was ${timePlace.dayCount} days.`);
+        $hungerLi.hide();
+        $boredomLi.hide();
+        $fatigueLi.hide();
+        $dayLi.hide();
+        $yearLi.hide();
+        $locLi.hide();
+    }
+}
 
 //calls
 hideGame();
-hideTopStuff();
-hideEvolution();
-hideSave();
-hideStartGameBtn();
+loseGameBored();
+loseGameHungry();
+loseGameTired();
+
 
 
 
