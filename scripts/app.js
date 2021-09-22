@@ -29,6 +29,7 @@ const owlStats = {
         owlStats.hunger++;
         console.log(owlStats.hunger);
         if(owlStats.hunger === 10) {
+            //stop all counts at end of game
             clearInterval(timePlace.increaseDayCount);
             clearInterval(owlStats.increaseHunger);
             clearInterval(owlStats.increaseBoredom);
@@ -119,11 +120,14 @@ const locationImgs = [
 // const timer = setInterval(countHours, 1000);
 
 //DOM
+//start screen
 let $startButton = $('#start');
 let $introScreen = $('.intro-screen');
+//initiate game
 let $gameBox = $('.game-box');
 let $gameScreen = $('.game-screen');
 let $topStuff = $('.action, .time-travel, .time-place, .owl-stats');
+//graphics - not all used at this point
 let $warmEgg = $('.warm-egg');
 let $egg = $('.egg');
 let $hatch = $('.hatch');
@@ -180,12 +184,14 @@ function handleFatigueCount() {
 }
 
 //eventListeners
+//iniitates game from intro screen
 $startButton.on('click', function() {
     console.log('game started');
     $introScreen.remove();
     $gameScreen.show();
 });
 
+//egg warming to hatch owl
 $warmEgg.on('click', function() {
     console.log('egg warming!');
     $egg.hide();
@@ -203,14 +209,15 @@ $warmEgg.on('click', function() {
     $fatigueLi.append(`${owlStats.fatigue}`);
 
     //place and time appends
-    $locLi.append(`${`Secret Lab`}`);
-    $yearLi.append(`${`2021`}`);
+    // $locLi.append(`${`Secret Lab`}`);
+    // $yearLi.append(`${`2021`}`);
     $dayLi.append(`${timePlace.dayCount}`);
 
     $pageText.html(`whoa - it's a mysterious time-traveling owl! what will you name it?`)
     $('.owl-name-input, .save').show();
 })
 
+//saves owl name
 $('.save').on('click', function() {
     console.log('saved');
     owlStats.owlName = $('.owl-name-input').val();
@@ -241,6 +248,7 @@ $feed.on('click', function() {
     }
 });
 
+//improves entertainment score by 1
 $book.on('click', function() {
     if(owlStats.boredom < 10 && owlStats.boredom > 0) {
         owlStats.boredom--;
@@ -249,6 +257,7 @@ $book.on('click', function() {
     }
 });
 
+//puts owl to sleep
 $sleep.on('click', function() {
     if(owlStats.fatigue < 10 && owlStats.fatigue > 0) {
         owlStats.fatigue--;
@@ -261,6 +270,7 @@ $sleep.on('click', function() {
     }
 });
 
+//wakes up sleeping owl - no points
 $wake.on('click', function() {
     $sleepOwl.hide();
     $sadOwl.hide();    
@@ -268,12 +278,14 @@ $wake.on('click', function() {
     }
 );
 
+//random background generated from array
 $timeTravel.on('click', function() {
     $('body').css("background", `url(${locationImgs[Math.floor(Math.random() * 11)]}) center center fixed`);
     $('body').css('background-size', 'cover');
     console.log('time travel hit');
 })
 
+//initiates all stat counters to go up at respective rates
 $('.start-game').on('click', function(){
     handleDayCount();
     handleHungerCount();
@@ -283,6 +295,7 @@ $('.start-game').on('click', function(){
     $('.start-game').hide();
 });
 
+//game reloads at end
 $playAgain.on('click', function() {
     location.reload();
 });
