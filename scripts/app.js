@@ -33,18 +33,11 @@ const owlStats = {
             clearInterval(owlStats.increaseHunger);
             clearInterval(owlStats.increaseBoredom);
             clearInterval(owlStats.increaseFatigue);
-            // alert(`your owl got too hungry and flew away. better luck next time!`);
             $pageText.show();
             $pageText.html(`oh no! ${owlStats.owlName} got too hungry and escaped! better luck next time with a different owl.
             
             your streak was ${timePlace.dayCount} days.`);
-            // $hungerLi.hide();
-            // $boredomLi.hide();
-            // $fatigueLi.hide();
-            // $dayLi.hide();
-            // $yearLi.hide();
-            // $locLi.hide();
-            // $nameLi.hide();
+
             $gameBox.hide();
             $owl.hide();
             $sleepOwl.hide();
@@ -61,7 +54,6 @@ const owlStats = {
             clearInterval(owlStats.increaseHunger);
             clearInterval(owlStats.increaseBoredom);
             clearInterval(owlStats.increaseFatigue);
-            // alert(`your owl got too bored and flew away. better luck next time!`);
             $pageText.show();
             $pageText.html(`oh no! ${owlStats.owlName} got too bored and escaped! better luck next time with a different owl.
             
@@ -92,11 +84,8 @@ const owlStats = {
             clearInterval(owlStats.increaseHunger);
             clearInterval(owlStats.increaseBoredom);
             clearInterval(owlStats.increaseFatigue);
-            // alert(`your owl got too tired and flew away. better luck next time!`);
             $pageText.show();
-            $pageText.html(`oh no! ${owlStats.owlName} got too tired and escaped!
-
-            better luck next time with a different owl.
+            $pageText.html(`oh no! ${owlStats.owlName} got too tired and escaped! better luck next time with a different owl.
             
             your streak was ${timePlace.dayCount} days.`);
             
@@ -106,20 +95,23 @@ const owlStats = {
             $flower.show();
         }
         $fatigueLi.html(`fatigue ${owlStats.fatigue}`);
-        
-        // if(owlStats.fatigue > 6) {
-        //     $owl.hide();
-        //     $sadOwl.show();
-        // } 
     },
 }
 
 //time-travel location image array
-locationImgs = [
-    'https://now.tufts.edu/sites/default/files/191105_berlin_wall_scharioth_lg.jpg', 
+const locationImgs = [
+    'https://www.google.com/search?q=fall%20of%20berlin%20wall&tbm=isch&tbs=isz:l&hl=en&sa=X&ved=0CAIQpwVqFwoTCPi624elk_MCFQAAAAAdAAAAABAC&biw=1326&bih=758#imgrc=2LxmZmLYSw2WDM', 
     'https://i.pinimg.com/originals/96/ff/ef/96ffef70fcd2f69e0d32d1bcbd8f514b.png',
-    ''
-]
+    'https://www.rollingstone.com/wp-content/uploads/2018/06/beatles-in-india-9c736b8e-0cd0-4c55-9535-35db0341564d.jpg',
+    'https://nypost.com/wp-content/uploads/sites/2/2020/02/81376702.jpg?quality=80&strip=all',
+    'https://www.guyanapalace.com/wp-content/uploads/2020/06/Nelson-Mandela-750x430-1-2100x1200.jpg',
+    'https://i2.wp.com/indieshortfest.com/wp-content/uploads/2020/09/Photo-7-Robot_Apocalypse_Image11_Son_Jake.jpg?ssl=1',
+    'https://cdn-japantimes.com/wp-content/uploads/2020/06/np_file_14038.jpeg',
+    'https://www.travelingmom.com/wp-content/uploads/2021/07/Bristol-renaissance-faire-queens-court-scaled.jpg',
+    'https://digida.co.uk/wp-content/uploads/2019/05/Wild-West-1080x675.jpg',
+    'https://lh3.googleusercontent.com/proxy/g8bashYumsnESE7gGpiu5Ua1FBSL71uC_q0cSTBbbkTLQ7qwoplHRMZ91btRTYwFsAmlKrzyPY4HHom6uH2ZMJKkReyR1kr3XlENIQHULxSSAV4xTCi3CuBKJgNHjy4hPio',
+    'https://www.chicagotribune.com/resizer/VkrRClBdab1jHdh8XWLm5WCxO_Q=/1200x0/top/www.trbimg.com/img-534da41d/turbine/ct-back-to-the-future-2015-20140415',
+];
 
 // const timer = setInterval(countHours, 1000);
 
@@ -272,7 +264,9 @@ $wake.on('click', function() {
 );
 
 $timeTravel.on('click', function() {
-    $('.body').css
+    $('body').css("background", `url(${locationImgs[Math.floor(Math.random() * 11)]}) center center fixed`);
+    $('body').css('background-size', 'cover');
+    console.log('time travel hit');
 })
 
 $('.start-game').on('click', function(){
@@ -284,61 +278,8 @@ $('.start-game').on('click', function(){
     $('.start-game').hide();
 });
 
-
-//lose game
-function loseGameBored() {
-    if (owlStats.boredom === 10) {
-        $pageText.html(`oh no! ${owlStats.owlName} got too bored and escaped!
-
-        better luck next time with a different owl.
-        
-        your streak was ${timePlace.dayCount} days.`);
-        $hungerLi.hide();
-        $boredomLi.hide();
-        $fatigueLi.hide();
-        $dayLi.hide();
-        $yearLi.hide();
-        $locLi.hide();
-    }
-}
-
-function loseGameHungry() {
-    if (owlStats.hunger === 10) {
-        $pageText.html(`oh no! ${owlStats.owlName} got too hungry and escaped!
-
-        better luck next time with a different owl.
-        
-        your streak was ${timePlace.dayCount} days.`);
-        $hungerLi.hide();
-        $boredomLi.hide();
-        $fatigueLi.hide();
-        $dayLi.hide();
-        $yearLi.hide();
-        $locLi.hide();
-    }
-}
-
-function loseGameTired() {
-    if (owlStats.fatigue === 10) {
-        $pageText.html(`oh no! ${owlStats.owlName} got too tired and escaped!
-
-        better luck next time with a different owl.
-        
-        your streak was ${timePlace.dayCount} days.`);
-        $hungerLi.hide();
-        $boredomLi.hide();
-        $fatigueLi.hide();
-        $dayLi.hide();
-        $yearLi.hide();
-        $locLi.hide();
-    }
-}
-
 //calls
 hideGame();
-loseGameBored();
-loseGameHungry();
-loseGameTired();
 
 
 

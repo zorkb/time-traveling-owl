@@ -5,7 +5,7 @@
 
 body {
     color: whitesmoke;
-    background: url("https://cutewallpaper.org/21/sci-fi-lab-background/Best-50-Research-Laboratory-Wallpaper-on-HipWallpaper-.jpg") no-repeat center center fixed;
+    background: url("https://cutewallpaper.org/21/sci-fi-lab-background/Best-50-Research-Laboratory-Wallpaper-on-HipWallpaper-.jpg") center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -125,11 +125,11 @@ body {
     min-height: 70vh;
 }
 
-.owl, .sleep-owl, .sad-owl, .flower {
+.owl, .sleep-owl, .sad-owl {
     width: 375px;
 }
 
-.egg, .hatch {
+.egg, .hatch, .flower {
     width: 220px;
 }
 
