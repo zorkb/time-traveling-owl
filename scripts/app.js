@@ -42,6 +42,7 @@ const owlStats = {
             $owl.hide();
             $sleepOwl.hide();
             $flower.show();
+            $playAgain.show();
         }
         $hungerLi.html(`hunger: ${owlStats.hunger}`);
     },
@@ -63,6 +64,7 @@ const owlStats = {
             $owl.hide();
             $sleepOwl.hide();
             $flower.show();
+            $playAgain.show();
             }
         $boredomLi.html(`boredom: ${owlStats.boredom}`);
         // if(owlStats.boredom > 6) {
@@ -93,6 +95,7 @@ const owlStats = {
             $owl.hide();
             $sleepOwl.hide();
             $flower.show();
+            $playAgain.show();
         }
         $fatigueLi.html(`fatigue ${owlStats.fatigue}`);
     },
@@ -142,7 +145,8 @@ let $feed = $('#feed');
 let $book = $('#book');
 let $sleep = $('#sleep-wake');
 let $wake = $('#wake');
-let $timeTravel = $('.time-travel')
+let $timeTravel = $('.time-travel');
+let $playAgain = $('#play-again');
 
 //function to hide elements
 function hideGame() {
@@ -153,6 +157,7 @@ function hideGame() {
     $sleepOwl.hide();
     $sadOwl.hide();
     $flower.hide();
+    $playAgain.hide();
     $('.start-game').hide();
     $('.owl-name-input, .save').hide();
 }
@@ -276,6 +281,10 @@ $('.start-game').on('click', function(){
     handleFatigueCount();
     $pageText.hide();
     $('.start-game').hide();
+});
+
+$playAgain.on('click', function() {
+    location.reload();
 });
 
 //calls
