@@ -25,6 +25,7 @@ the design began with a character concept. not all graphics were used, but could
 
 ### wireframes: <br />
 as a designer, wireframing is something I'm extremely familiar with. these were just quick mocks so I could get coding. certain elements changed due to further thought or constraints of my coding abilities. this was actually an extremely good exercise, as I now have more direct empathy for what it takes to execute functionality based on design documents.
+<br />
 ![intro screen](https://i.ibb.co/C71jkv9/Welcome-Owl.png)
 <a href="https://ibb.co/6DszjDX"><img src="https://i.ibb.co/7ryPsrk/Egg-Screen-Owl.png" alt="Egg-Screen-Owl" border="0"></a>
 <a href="https://ibb.co/R3hYnvc"><img src="https://i.ibb.co/By4cDzB/Name-Screen-Owl.png" alt="Name-Screen-Owl" border="0"></a>
