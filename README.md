@@ -1,7 +1,7 @@
 # time-traveling-owl
 
 ### context:<br />
-this is a tomagatchi-style game created as means to practice basic coding concepts.
+this is a tomagatchi-style game created as a means to practice basic coding concepts.
 
 ### concept: <br />
 you adopt an owl who loves food, entertainment, and travelling through the fabric of space-time. 
