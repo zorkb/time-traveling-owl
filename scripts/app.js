@@ -187,15 +187,15 @@ function handleDayCount() {
 }
 
 function handleHungerCount() {
-    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000 * 1);
+    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000 * 2);
 }
 
 function handleBoredomCount() {
-    owlStats.increaseBoredom = setInterval(owlStats.incrementBoredom, 1000 * 3);
+    owlStats.increaseBoredom = setInterval(owlStats.incrementBoredom, 1000 * 4);
 }
 
 function handleFatigueCount() {
-    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 2);
+    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 3);
 }
 
 //eventListeners
@@ -300,10 +300,12 @@ $wake.on('click', function() {
 
 //random background generated from array
 $timeTravel.on('click', function() {
-    $('body').css("background", `url(${locationImgs[Math.floor(Math.random() * 11)]}) center center fixed`);
+    $('body').css("background", `url(${locationImgs[Math.floor(Math.random() * locationImgs.length)]}) center center fixed`);
     $('body').css('background-size', 'cover');
-    // owlStats.fatigue += 2; ------why doesn't this work?
+    owlStats.fatigue += 1; 
+    $fatigueLi.html(`fatigue: ${owlStats.fatigue}`);
     // console.log('time travel hit');
+    //not sure why the css loads a white background sometimes
 })
 
 //initiates all stat counters to go up at respective rates
