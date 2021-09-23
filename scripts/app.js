@@ -8,7 +8,7 @@ const timePlace = {
     increment: () => {
         timePlace.dayCount++;
         // console.log(timePlace.dayCount);
-        if(timePlace.dayCount === 25) {
+        if(timePlace.dayCount === 10) {
             //stop all counts at end of game
             clearInterval(timePlace.increaseDayCount);
             clearInterval(owlStats.increaseHunger);
@@ -187,7 +187,7 @@ function handleDayCount() {
 }
 
 function handleHungerCount() {
-    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000 * 2);
+    owlStats.increaseHunger = setInterval(owlStats.incrementHunger, 1000 * 1);
 }
 
 function handleBoredomCount() {
@@ -195,7 +195,7 @@ function handleBoredomCount() {
 }
 
 function handleFatigueCount() {
-    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 4);
+    owlStats.increaseFatigue = setInterval(owlStats.incrementFatigue, 1000 * 2);
 }
 
 //eventListeners
@@ -216,6 +216,7 @@ $warmEgg.on('click', function() {
     $owl.show('slow');
     $warmEgg.hide();
     $topStuff.show();
+    $wake.hide();
     // countDays();
 
     //stat appends
@@ -282,6 +283,8 @@ $sleep.on('click', function() {
         $owl.hide();
         $sadOwl.hide();
         $sleepOwl.show();
+        $sleep.hide();
+        $wake.show();
     }
 });
 
@@ -289,7 +292,8 @@ $sleep.on('click', function() {
 $wake.on('click', function() {
     $sleepOwl.hide();
     $sadOwl.hide();    
-    $owl.show();    
+    $owl.show();
+    $sleep.show();    
     }
 );
 
@@ -297,7 +301,7 @@ $wake.on('click', function() {
 $timeTravel.on('click', function() {
     $('body').css("background", `url(${locationImgs[Math.floor(Math.random() * 11)]}) center center fixed`);
     $('body').css('background-size', 'cover');
-    owlStats.fatigue += 2;
+    // owlStats.fatigue += 2; ------why doesn't this work?
     // console.log('time travel hit');
 })
 
