@@ -119,7 +119,7 @@ const owlStats = {
 
 //time-travel location image array
 const locationImgs = [
-    'https://www.google.com/search?q=fall%20of%20berlin%20wall&tbm=isch&tbs=isz:l&hl=en&sa=X&ved=0CAIQpwVqFwoTCPi624elk_MCFQAAAAAdAAAAABAC&biw=1326&bih=758#imgrc=2LxmZmLYSw2WDM', 
+    'https://www.history.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTY3Nzk0OTU2MzQ0MjM5NDg4/berlin-wall-gettyimages-527012806.jpg', 
     'https://i.pinimg.com/originals/96/ff/ef/96ffef70fcd2f69e0d32d1bcbd8f514b.png',
     'https://www.rollingstone.com/wp-content/uploads/2018/06/beatles-in-india-9c736b8e-0cd0-4c55-9535-35db0341564d.jpg',
     'https://nypost.com/wp-content/uploads/sites/2/2020/02/81376702.jpg?quality=80&strip=all',
@@ -128,7 +128,6 @@ const locationImgs = [
     'https://cdn-japantimes.com/wp-content/uploads/2020/06/np_file_14038.jpeg',
     'https://www.travelingmom.com/wp-content/uploads/2021/07/Bristol-renaissance-faire-queens-court-scaled.jpg',
     'https://digida.co.uk/wp-content/uploads/2019/05/Wild-West-1080x675.jpg',
-    'https://lh3.googleusercontent.com/proxy/g8bashYumsnESE7gGpiu5Ua1FBSL71uC_q0cSTBbbkTLQ7qwoplHRMZ91btRTYwFsAmlKrzyPY4HHom6uH2ZMJKkReyR1kr3XlENIQHULxSSAV4xTCi3CuBKJgNHjy4hPio',
     'https://www.chicagotribune.com/resizer/VkrRClBdab1jHdh8XWLm5WCxO_Q=/1200x0/top/www.trbimg.com/img-534da41d/turbine/ct-back-to-the-future-2015-20140415',
 ];
 
