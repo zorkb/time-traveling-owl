@@ -293,7 +293,8 @@ $wake.on('click', function() {
     $sleepOwl.hide();
     $sadOwl.hide();    
     $owl.show();
-    $sleep.show();    
+    $sleep.show(); 
+    $wake.hide();   
     }
 );
 
